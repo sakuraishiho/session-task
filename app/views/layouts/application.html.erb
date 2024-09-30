@@ -10,7 +10,17 @@
   </head>
 
   <body>
-    <p id="notice"><%= notice %></p>
-    <%= yield %>
+    <nav>
+    <ul>
+      <li><%= link_to 'アカウント登録', new_user_path, id: 'sign-up' %></li>
+      <li><%= link_to 'ログイン', new_session_path, id: 'sign-in' %></li>
+      <% if logged_in? %>
+        <li><%= link_to 'アカウント', user_path(current_user), id: 'my-account' %></li>
+        <li><%= link_to 'ログアウト', destroy_session_path, method: :delete, data: { confirm: '本当にログアウトしますか？' }, id: 'sign-out' %></li>
+        <li><%= link_to 'タスク一覧', tasks_path, id: 'tasks-index' %></li>
+        <li><%= link_to 'タスクを登録する', new_task_path, id: 'new-task' %></li>
+      <% end %>
+    </ul>
+    </nav>
   </body>
 </html>
